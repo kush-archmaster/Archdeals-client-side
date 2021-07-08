@@ -1,10 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './productitem.css';
+import ButtonProduct from './ButtonProduct';
 
 const ProductItem = ({product, isAdmin, deleteProduct, handleCheck}) => {
     return (
         <div className='product_card'>
+            {
+                isAdmin && <input type='checkbox' checked={product.checked} />
+            }
 
              <img src={product.images.url} alt="" />
 
@@ -13,14 +16,9 @@ const ProductItem = ({product, isAdmin, deleteProduct, handleCheck}) => {
                 <span>Rs.{product.price}</span>
             </div>
         
-            <div className='row_btn'>
-                <Link id='btn_buy' to='#'>
-                    Buy
-                </Link>
-                <Link id='btn_view' to={`/detail/${product._id}`}>
-                    View
-                </Link>
-            </div>
+        {/*buttons to view and buy */}
+           <ButtonProduct product={product}/>
+
         </div>
     )
 }

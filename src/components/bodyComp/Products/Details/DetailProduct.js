@@ -17,13 +17,13 @@ const DetailProduct = () => {
 
             products.forEach(product => {
                 if(product._id === params.id) 
-                      setDetailProduct(product)
+                      setDetailProduct(product);
             })
         }
-    },[params.id, products])
+    },[params.id, products]);
 
     if(detailProduct.length === 0) return null;
-    console.log(detailProduct)
+    //console.log(detailProduct)
     return (
     <>
         <div className='detail'>

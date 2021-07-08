@@ -1,16 +1,54 @@
-//import React, {useContext, useState} from 'react';
-//import {GlobalState} from '../../Globalstate';
+import React, {useContext, useState} from 'react';
+import { GlobalState } from '../../Globalstate';
 import './header.css';
 import Close from './headericons/close.svg';
 import Cart from './headericons/cart.svg';
 import Menu from './headericons/menu.svg';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
+import axios from 'axios';
 
 
 const Header = () => {
 
     //getting value from global state
-  //  const contextVar = useContext(GlobalState);
+    const state = useContext(GlobalState);
+   // console.log(state);
+    const history = useHistory();
+    const [isLogged,setIsLogged] = state.UserAPI.isLogged;
+    const [isAdmin, setIsAdmin] = state.UserAPI.isAdmin;
+    const [menu, setMenu] = useState(false);
+
+    //logout
+    const logoutUser = async () =>{
+        await axios.get('/user/logout')
+        
+        localStorage.removeItem('firstLogin');
+        setIsAdmin(false);
+        setIsLogged(false);
+        
+    }
+
+    //admin navbar
+    const adminRoute = () =>{
+        return(
+            <>
+                <li><Link to="/create_product">Create Product</Link></li>
+                <li><Link to="/category">Categories</Link></li>
+            </>
+        )
+    }
+
+    //logged in navbar
+    const loggedInRoute = () =>{
+        return(
+            <>
+                <li><Link to="/history">History</Link></li>
+                <li><Link to="/" onClick={logoutUser} >Logout</Link></li>
+            </>
+        )
+    }
+
+
 
     return (
         <header>
@@ -20,25 +58,45 @@ const Header = () => {
 
             <div className="logo">
                 <h1>
-                    <Link to="/">Arch:Deals</Link>
+                    <Link to="/">
+                    { //different for admin
+                        isAdmin ? 'Admin' : 'Arch:Deals'
+                    }
+                    </Link>
                 </h1>
             </div>
 
             <ul>
-                <li><Link to='/'>Products</Link></li>
-                <li><Link to='/login'>Login</Link></li>
-                <li><Link to='/register'>Register</Link></li>
+                <li><Link to="/">
+                {isAdmin ? 'Products' : 'Shop'}
+                </Link></li>
+
+                {isAdmin && adminRoute()}
+                 {
+                    isLogged ? loggedInRoute() 
+                    :
+                    <>
+                    <li><Link to='/login'>Login</Link></li>
+                   <li><Link to='/register'>Register</Link></li>
+                   </>
+                 }
+               
                 <li>
                     <img src={Close} alt="" width="30" className="menu" />
                 </li>
             </ul>
 
-            <div className="cart-icon">
+            {
+                isAdmin ? null
+                 :
+                 <div className="cart-icon">
                     <span>0</span>
                     <Link to="/cart">
                         <img src={Cart} alt="" width="30" />
                     </Link>
-            </div>
+                 </div>
+            }
+          
         </header>
     )
 }
