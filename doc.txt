@@ -1,3 +1,8 @@
-git remote add origin https://github.com/kush-archmaster/archdeals.git
+git remote add origin https://github.com/kush-archmaster/Archdeals-client-side.git
+git branch -M main
+git push -u origin main
+
+
+git remote add origin https://github.com/kush-archmaster/Archdeals-server.git
 git branch -M main
 git push -u origin main
