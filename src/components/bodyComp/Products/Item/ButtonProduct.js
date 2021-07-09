@@ -6,6 +6,8 @@ const ButtonProduct = ({product}) => {
 
     const state = useContext(GlobalState);
     const [isAdmin] = state.UserAPI.isAdmin;
+    const addCart = state.UserAPI.addCart;
+
 
     return (
         <div className='row_btn'>
@@ -21,7 +23,7 @@ const ButtonProduct = ({product}) => {
                </>
                : 
                <>
-               <Link id='btn_buy' to=''>
+               <Link id='btn_buy' to='#' onClick={() => addCart(product)}>
                   Buy
                </Link>
                <Link id='btn_view' to={`/detail/${product._id}`}>

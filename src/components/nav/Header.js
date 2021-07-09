@@ -17,14 +17,16 @@ const Header = () => {
     const [isLogged,setIsLogged] = state.UserAPI.isLogged;
     const [isAdmin, setIsAdmin] = state.UserAPI.isAdmin;
     const [menu, setMenu] = useState(false);
+    const [cart] = state.UserAPI.cart;
 
     //logout
     const logoutUser = async () =>{
         await axios.get('/user/logout')
         
         localStorage.removeItem('firstLogin');
-        setIsAdmin(false);
-        setIsLogged(false);
+        
+        //reloads the window 
+        window.location.href = '/';
         
     }
 
@@ -90,7 +92,7 @@ const Header = () => {
                 isAdmin ? null
                  :
                  <div className="cart-icon">
-                    <span>0</span>
+                    <span>{cart.length}</span>
                     <Link to="/cart">
                         <img src={Cart} alt="" width="30" />
                     </Link>
