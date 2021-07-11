@@ -2,16 +2,92 @@ import React,{useContext, useState, useEffect} from 'react';
 import { GlobalState } from '../../../Globalstate';
 import axios from 'axios';
 import './cart.css';
-import { Link } from 'react-router-dom';
+import PaypalButton from './PaypalButton';
 
 const Cart = () => {
 
     const state = useContext(GlobalState);
     const [cart, setCart] = state.UserAPI.cart;
-    const [token] = state.token;
+    const [token] = state.token;  //for authorization
     const [total, setTotal] = useState(0);
 
-    
+    //calculating total as the cart modifies
+    useEffect(() =>{
+        const getTotal = () =>{
+            const total = cart.reduce((acc, item) => {
+                return acc + (item.price * item.quantity);
+            },0)
+
+            setTotal(total);
+        }
+
+        getTotal();
+
+    },[cart])
+
+    //updating cart
+    const updateCart = async (cart) =>{
+        await axios.patch('/user/addcart', {cart}, {
+            headers: {Authorization: token}
+        })
+    }
+
+
+    //increment quantity
+    const increment = (id) =>{
+        cart.forEach(item => {
+            if(item._id === id){
+                item.quantity += 1;
+            }
+        })
+
+        setCart([...cart]);
+        updateCart(cart);
+    }
+
+    //decrement quantity
+    const decrement = (id) =>{
+        cart.forEach(item => {
+            if(item._id === id){
+                item.quantity === 1 ? item.quantity = 1 : item.quantity -= 1
+            }
+        })
+
+        setCart([...cart]);
+        updateCart(cart);
+    }
+
+
+    //remove item
+    const removeProduct = id =>{
+        //deleting that particular product
+        if(window.confirm("Do you want to delete this product?")){
+            cart.forEach((item, index) => {
+                if(item._id === id){
+                    cart.splice(index, 1);
+                }
+            })
+
+            setCart([...cart]);
+            updateCart(cart);
+        }
+    }
+
+
+    //only after transaction is succesfull
+    const paymentSuccess = async (payment) =>{
+        // console.log(payment); --> gives back all the data after payment succesfull
+        const {paymentID, address} = payment;
+
+        await axios.post('/api/payment', {cart, paymentID, address}, {
+            headers: {Authorization: token}
+        })
+
+        setCart([]);
+        updateCart([]);
+        alert("You have successfully placed an order.");
+
+    }
 
 
     //if cart is empty
@@ -33,12 +109,12 @@ const Cart = () => {
                             <p>{product.content}</p>
 
                             <div className="amount">
-                                <button > - </button>
+                                <button onClick={() => decrement(product._id)}> - </button>
                                 <span>{product.quantity}</span>
-                                <button> + </button>
+                                <button onClick={() => increment(product._id)}> + </button>
                             </div>
                             
-                            <div className="delete" >
+                            <div className="delete"  onClick={() => removeProduct(product._id)}>
                                 X
                             </div>
                         </div>
@@ -47,11 +123,14 @@ const Cart = () => {
             }
 
             <div className="total">
-                <h3>Total: Rs 0</h3>
-                <Link to='#'>Pay</Link>
+                <h3>Total: Rs {total}</h3>
+                <PaypalButton
+                   total={total}
+                   paymentSuccess={paymentSuccess} 
+                   />
             </div>
         </div>
     )
 }
 
-export default Cart
+export default Cart;
