@@ -1,6 +1,8 @@
 //Master main Page
-import React from 'react';
+import React, {useContext} from 'react';
+import { GlobalState } from '../../Globalstate';
 import { Switch, Route } from 'react-router-dom';
+
 import Products from './Products/Products';
 import Cart from './Cart/Cart';
 import Login from './userAuth/Login';
@@ -10,11 +12,16 @@ import Errorpage from './Errorpage';
 
 
 const Pages = () => {
+
+  const state = useContext(GlobalState)
+  const [isLogged] = state.UserAPI.isLogged
+  //const [isAdmin] = state.UserAPI.isAdmin
+
     return (
         <Switch>
         <Route path="/" exact component={Products} />
-        <Route path="/login" exact component={ Login} />
-        <Route path="/register" exact component={ Register} />
+        <Route path="/login" exact component={isLogged ? Errorpage : Login} />
+        <Route path="/register" exact component={isLogged ? Errorpage : Register} />
         <Route path="/cart" exact component={Cart} />
         <Route path="/detail/:id" exact component={DetailProduct} />
 
