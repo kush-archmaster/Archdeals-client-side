@@ -19,7 +19,7 @@ code {
 }
 
 .App{
-  background-color: rgb(241, 231, 231);
+  background-color: white;
   max-width: 1230px;
   min-height: 100vh;
   margin: 0 auto;
