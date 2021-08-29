@@ -35,6 +35,9 @@ const UserAPI = (token) =>{
         }
     },[token]);
 
+    //for fetching history of user payments
+
+
     //add to cart after logged in
     const addCart = async (product) => {
         if(!isLogged) return alert("Please login to continue buying");
@@ -65,10 +68,8 @@ return {
         isLogged: [isLogged, setIsLogged],
         isAdmin: [isAdmin, setIsAdmin],
         addCart: addCart,
-        cart: [cart, setCart]
-       /*,
-        ,
-        history: [history, setHistory]*/
+        cart: [cart, setCart],
+        history: [history, setHistory]
     }
 }
 

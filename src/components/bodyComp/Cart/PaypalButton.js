@@ -24,7 +24,7 @@ const PaypalButton = (props) => {
     }
 
     let env = 'sandbox'; // you can set here to 'production' for production
-    let currency = 'INR'; // or you can set this value from your props or state
+    let currency = 'USD'; // or you can set this value from your props or state
     let total = props.total; // same as above, this is the total amount (based on currency) to be paid by using Paypal express checkout
    
 

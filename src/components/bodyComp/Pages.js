@@ -9,6 +9,8 @@ import Login from './userAuth/Login';
 import Register from './userAuth/Register';
 import DetailProduct from './Products/Details/DetailProduct';
 import Errorpage from './Errorpage';
+import Orderhistory from './history/Orderhistory';
+import OrderDetail from './history/OrderDetail';
 
 
 const Pages = () => {
@@ -22,6 +24,8 @@ const Pages = () => {
         <Route path="/" exact component={Products} />
         <Route path="/login" exact component={isLogged ? Errorpage : Login} />
         <Route path="/register" exact component={isLogged ? Errorpage : Register} />
+        <Route path="/history" exact component={isLogged ? Orderhistory : Errorpage} />
+        <Route path="/history/:id" exact component={isLogged ? OrderDetail : Errorpage} />
         <Route path="/cart" exact component={Cart} />
         <Route path="/detail/:id" exact component={DetailProduct} />
 
@@ -36,7 +40,7 @@ const Pages = () => {
         <Route path="/edit_product/:id" exact component={isAdmin ? CreateProduct : NotFound} />
 
         <Route path="/history" exact component={isLogged ? OrderHistory : NotFound} />
-        <Route path="/history/:id" exact component={isLogged ? OrderDetails : NotFound} />
+        />
         
         isLogged ? NotFound :
       */

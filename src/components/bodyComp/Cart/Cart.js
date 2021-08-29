@@ -3,6 +3,7 @@ import { GlobalState } from '../../../Globalstate';
 import axios from 'axios';
 import './cart.css';
 import PaypalButton from './PaypalButton';
+import { useHistory } from 'react-router';
 
 const Cart = () => {
 
@@ -24,6 +25,8 @@ const Cart = () => {
         getTotal();
 
     },[cart])
+
+    
 
     //updating cart
     const updateCart = async (cart) =>{
@@ -86,8 +89,10 @@ const Cart = () => {
         setCart([]);
         updateCart([]);
         alert("You have successfully placed an order.");
-
+        window.location.href = '/';
     }
+
+
 
 
     //if cart is empty
@@ -104,7 +109,7 @@ const Cart = () => {
                         <div className="box-detail">
                             <h2>{product.title}</h2>
 
-                            <h3>Rs {product.price * product.quantity}</h3>
+                            <h3>$ {product.price * product.quantity}</h3>
                             <p>{product.description}</p>
                             <p>{product.content}</p>
 
@@ -123,7 +128,7 @@ const Cart = () => {
             }
 
             <div className="total">
-                <h3>Total: Rs {total}</h3>
+                <h3>Total: $ {total}</h3>
                 <PaypalButton
                    total={total}
                    paymentSuccess={paymentSuccess} 
