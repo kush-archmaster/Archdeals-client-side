@@ -31,6 +31,7 @@ const Pages = () => {
 
         <Route path="/cart" exact component={Cart} />
         <Route path="/detail/:id" exact component={DetailProduct} />
+        <Route path="/edit/:id" exact component={isAdmin ? CreateProduct : Errorpage} />
 
         <Route path="/category" exact component={isAdmin ? Category : Errorpage} />
          <Route path="/create_product" exact component={isAdmin ? CreateProduct : Errorpage} />
@@ -42,7 +43,7 @@ const Pages = () => {
       <Route path="/detail/:id" exact component={DetailProduct} />
       <Route path="/category" exact component={isAdmin ? Categories : NotFound} />
        
-        <Route path="/edit_product/:id" exact component={isAdmin ? CreateProduct : NotFound} />
+        
 
         <Route path="/history" exact component={isLogged ? OrderHistory : NotFound} />
         />

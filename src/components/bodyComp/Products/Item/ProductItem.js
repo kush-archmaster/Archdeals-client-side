@@ -20,13 +20,14 @@ const ProductItem = ({product, isAdmin, deleteProduct, handleCheck}) => {
                <h4 title={product.title} style={{textTransform: "uppercase"}}>{product.title}</h4>
                <h3>$ {product.price}</h3>
                </div>
+               <ButtonProduct product={product}/>
+
             </div>
 
             </div>
             
         {/*buttons to view and buy */}
-           <ButtonProduct product={product}/>
-
+          
         </div>
     )
 }

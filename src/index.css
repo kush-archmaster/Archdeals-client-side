@@ -10,7 +10,6 @@
 }
 
 body {
-  background-color: white;
 }
 
 code {
@@ -19,6 +18,7 @@ code {
 }
 
 .App {
+  background-color: rgb(72, 245, 101);
   max-width: 1230px;
   min-height: 100vh;
   margin: 0 auto;

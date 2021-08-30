@@ -17,7 +17,7 @@ const Products = () => {
 
     return (
     <>
-        <div className='products'>
+        <div className='products pp'>
             {
                 products.map(product => {
                     return <ProductItem key={product._id} product={product} isAdmin={isAdmin}/>

@@ -1,13 +1,15 @@
+.pp {
+  background-image: url("../../../bg.jpg");
+  background-position: center;
+  background-size: cover;
+  background-attachment: scroll;
+}
+
 .products {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   justify-items: center;
-  margin: 20px 0;
-  background-image: url("../../../bg.jpg");
-  background-position: center;
-  background-size: cover;
-  background-attachment: scroll;
 }
 
 .delete-all {

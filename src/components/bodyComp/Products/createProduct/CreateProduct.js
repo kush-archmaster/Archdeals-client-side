@@ -28,9 +28,26 @@ const CreateProduct = () => {
     const history = useHistory()
     const param = useParams()
 
-    const [products] = state.productsAPI.products
-    const [onEdit, setOnEdit] = useState(false)
+    const [products] = state.productsAPI.products //all products data from db
+    const [Edit, setEdit] = useState(false)
     //const [callback, setCallback] = state.productsAPI.callback
+
+    useEffect(() => {
+        if(param.id){
+            setEdit(true)
+            products.forEach(product => {
+                if(product._id === param.id) {
+                    setProduct(product)
+                    setImages(product.images)
+                }
+            })
+        }else{ //for create product
+            setEdit(false)
+            setProduct(initialState)
+            setImages(false)
+        }
+    }, [param.id, products])
+
 
    const Inputchange = (event) =>{
     const {name, value} = event.target
@@ -74,7 +91,7 @@ const CreateProduct = () => {
         if(!isAdmin) return alert("You're not an admin")
         if(!images) return alert("No Image Upload")
 
-        if(onEdit){
+        if(Edit){
             await axios.put(`/api/products/${product._id}`, {...product, images}, {
                 headers: {Authorization: token}
             })
@@ -133,7 +150,7 @@ const CreateProduct = () => {
                 <div className="row">
                     <label htmlFor="product_id">Product ID</label>
                     <input type="text" name="product_id" id="product_id" required
-                    value={product.product_id} onChange={Inputchange} disabled={onEdit} />
+                    value={product.product_id} onChange={Inputchange} disabled={Edit} /> {/*disabled edits */}
                 </div>
 
                 <div className="row">
@@ -174,7 +191,7 @@ const CreateProduct = () => {
                     </select>
                 </div>
 
-                <button type="submit">{onEdit? "Update" : "Create"}</button>
+                <button type="submit">{Edit? "Update" : "Create"}</button>
             </form>
         </div>
     )
