@@ -64,4 +64,4 @@ const Orderhistory = () => {
     )
 }
 
-export default Orderhistory
+export default Orderhistory;
