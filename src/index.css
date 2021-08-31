@@ -10,6 +10,7 @@
 }
 
 body {
+  background-color: black;
 }
 
 code {
@@ -18,12 +19,19 @@ code {
 }
 
 .App {
+  background: linear-gradient(
+    90deg,
+    #9a109a 6%,
+    #d53567 30%,
+    #f14444 55%,
+    #d53567 60%,
+    #9a109a 90%
+  );
   background-color: rgb(72, 245, 101);
   max-width: 1230px;
   min-height: 100vh;
   margin: 0 auto;
   padding: 0 20px;
-  box-shadow: 0 0 35px #eee;
 }
 a {
   text-decoration: none;

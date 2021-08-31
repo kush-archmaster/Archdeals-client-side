@@ -1,8 +1,12 @@
 .pp {
-  background-image: url("../../../bg.jpg");
-  background-position: center;
-  background-size: cover;
-  background-attachment: scroll;
+  background: linear-gradient(
+    90deg,
+    #9a109a 6%,
+    #d53567 30%,
+    #f14444 55%,
+    #d53567 60%,
+    #9a109a 90%
+  );
 }
 
 .products {
@@ -57,7 +61,7 @@ input {
   margin: 0 10px;
 }
 
-/* -------------------- Load More --------------- */
+/* -------------------- Load More prods --------------- */
 .load_more {
   text-align: center;
 }

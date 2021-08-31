@@ -4,6 +4,7 @@ import DataProvider from './Globalstate';
 import Header from './components/nav/Header';
 import Pages from './components/bodyComp/Pages';
 
+
 function App() {
   return (
     <DataProvider>

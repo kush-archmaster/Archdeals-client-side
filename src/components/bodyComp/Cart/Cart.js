@@ -97,7 +97,11 @@ const Cart = () => {
 
     //if cart is empty
     if(cart.length === 0) 
-    return <h2 style={{textAlign: "center", fontSize: "5rem"}}>Cart Empty</h2> 
+    return (
+        <div style={{ height:"80vh",display:"flex", justifyContent:"center", alignItems:"center"}}>
+            <h2 style={{fontSize:"60px"}}>Cart Empty 👀</h2> 
+        </div>
+    )
 
     return (
         <div>

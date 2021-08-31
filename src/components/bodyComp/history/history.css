@@ -25,6 +25,9 @@ td {
   padding: 10px;
   text-transform: capitalize;
 }
+td {
+  font-size: 20px;
+}
 table a {
   color: rgb(3, 165, 206);
 }

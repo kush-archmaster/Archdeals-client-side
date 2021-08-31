@@ -14,6 +14,7 @@ import OrderDetail from './history/OrderDetail';
 import Category from './categories/Category';
 import CreateProduct from './Products/createProduct/CreateProduct';
 
+
 const Pages = () => {
 
   const state = useContext(GlobalState)
@@ -53,6 +54,7 @@ const Pages = () => {
   }      
       
     </Switch>
+    
     )
 }
 

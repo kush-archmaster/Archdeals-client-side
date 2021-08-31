@@ -1,50 +1,52 @@
-header{
-    min-height: 70px;
-    width: 100%;
-    overflow: hidden;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-    border-bottom: 1px solid #ddd;
+header {
+  min-height: 70px;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
 }
-header .logo{
-    flex: 1;
+header .logo {
+  flex: 1;
 }
-header .logo h1{
-    font-size: 35px;
+header .logo h1 {
+  font-size: 35px;
 }
 
-header a{
-    text-transform: uppercase;
-    color: #555;
-    
+header .logo h1 a:hover {
+  color: #fff;
 }
-header ul li{
-    display: inline-block;
-    opacity: 0.7;
-    padding: 10px 20px;
-    color: #555;
-    font-weight: 500;
+
+header a {
+  color: #fff;
 }
-header ul li a:hover{
-    opacity: 1;
-    color: black;
+header ul li {
+  display: inline-block;
+  opacity: 0.7;
+  padding: 10px 20px;
+  color: #fff;
+  font-weight: 500;
+  text-transform: uppercase;
 }
-.menu{
-    display: none;
+header ul li a:hover {
+  opacity: 1;
+  color: black;
 }
-.cart-icon{
-    position: relative;
-    margin-right: 20px;
+.menu {
+  display: none;
 }
-.cart-icon span{
-    background: crimson;
-    border-radius: 20px;
-    color: white;
-    position: absolute;
-    top:-10px;
-    right: -10px;
-    padding: 2px 7px;
-    font-size: 10px;
+.cart-icon {
+  position: relative;
+  margin-right: 20px;
+}
+.cart-icon span {
+  background: crimson;
+  border-radius: 20px;
+  color: white;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  padding: 2px 7px;
+  font-size: 10px;
 }

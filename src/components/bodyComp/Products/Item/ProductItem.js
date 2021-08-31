@@ -3,12 +3,15 @@ import './productitem.css';
 import ButtonProduct from './ButtonProduct';
 
 const ProductItem = ({product, isAdmin, deleteProduct, handleCheck}) => {
+
+    
     return (
       
         <div className='container'>
             <div className="product_card">
             {
-                isAdmin && <input type='checkbox' />
+                isAdmin && <input type='checkbox' checked={product.checked}
+                 onChange={() => handleCheck(product._id)}/>
                 /*<img src={product.images.url} alt="" /> */
             }
             
@@ -20,7 +23,7 @@ const ProductItem = ({product, isAdmin, deleteProduct, handleCheck}) => {
                <h4 title={product.title} style={{textTransform: "uppercase"}}>{product.title}</h4>
                <h3>$ {product.price}</h3>
                </div>
-               <ButtonProduct product={product}/>
+               <ButtonProduct product={product} deleteProduct={deleteProduct}/>
 
             </div>
 

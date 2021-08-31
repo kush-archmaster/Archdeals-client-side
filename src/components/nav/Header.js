@@ -62,7 +62,7 @@ const Header = () => {
                 <h1>
                     <Link to="/">
                     { //different for admin
-                        isAdmin ? 'Admin' : 'Archdeals'
+                        isAdmin ? 'Admin' : 'archdeals ✔'
                     }
                     </Link>
                 </h1>
