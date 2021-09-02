@@ -28,13 +28,15 @@
 }
 .delete-all span {
   text-transform: uppercase;
-  color: rgb(3, 165, 206);
+  font-weight: 800;
+  color: rgb(3, 199, 206);
   letter-spacing: 1.3px;
 }
 .delete-all button {
-  border: 1px solid crimson;
-  padding: 10px 25px;
-  color: crimson;
+  border: 2px solid white;
+  border-radius: 15px;
+  color: white;
+  padding: 5px;
   text-transform: uppercase;
 }
 
